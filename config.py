@@ -7,6 +7,8 @@ OWNER_ID = 6440363814
 BOT_NAME = "devine"
 START_IMG = "https://telegra.ph/file/5632b2e02f0a72431ed97.jpg"
 BANNED_USERS = None
-UPDATE_CHNL = "https://t.me/Devine_Network"
+UPDATE_CHANNEL = "https://t.me/Devine_Network"
 OWNER_USERNAME = "fake_devine"
 SUPPORT_GROUP = "http://t.me/Devine_Community"
+
+ 
