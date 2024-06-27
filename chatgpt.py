@@ -7,7 +7,9 @@ import os, sys, re, requests
 import asyncio, time
 from random import choice
 from datetime import datetime
-from config import API_ID, API_HASH, BOT_TOKEN, OPENAI_KEY, BOT_NAME, BOT_USERNAME, OWNER_USERNAME, SUPPORT_GROUP, START_IMG, UPDATE_CHANNEL
+
+# Import logging module
+import logging
 
 # Logging configuration
 FORMAT = "[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
@@ -17,6 +19,9 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 logger = logging.getLogger(__name__)
+
+# Constants from config.py
+from config import API_ID, API_HASH, BOT_TOKEN, OPENAI_KEY, BOT_NAME, BOT_USERNAME, OWNER_USERNAME, SUPPORT_GROUP, START_IMG, UPDATE_CHANNEL
 
 StartTime = time.time()
 DEVINE = Client(
