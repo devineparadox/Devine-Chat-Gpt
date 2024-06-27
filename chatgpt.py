@@ -54,7 +54,7 @@ MAIN_BUTTONS = [
         InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴍᴅs ", callback_data="HELP"),
     ],
     [
-        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url=f"https://github.com/YOUR_REPO"),
+        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url=f"https://github.com/devineparadox/Devine-Chat-Gpt"),
         InlineKeyboardButton(text=" ᴜᴘᴅᴀᴛᴇs ", url=f"https://t.me/{UPDATE_CHENNAL}"),
     ],
 ]
