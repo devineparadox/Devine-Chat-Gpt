@@ -118,20 +118,17 @@ async def ping(client, message: Message):
 
 openai.api_key = OPENAI_KEY
 
-@DEVINE.on_message(filters.command(["chatgpt", "ai", "ask"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]))
+@DEVINE.on_message(~filters.command(["start", "help", "ping", "alive"], prefixes=["+", "/", "-", "?", "$", "&", "."]))
 async def chat(client, message: Message):
     try:
-        if len(message.command) < 2:
-            await message.reply_text("Example:\n\n`/chatgpt Where is the Taj Mahal?`")
-        else:
-            prompt = message.text.split(' ', 1)[1]
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.2,
-            )
-            reply_text = response['choices'][0]['message']['content']
-            await message.reply_text(f"{message.from_user.first_name} asked:\n\n{prompt}\n\n{BOT_NAME} answered:\n\n{reply_text}")
+        prompt = message.text
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.2,
+        )
+        reply_text = response['choices'][0]['message']['content']
+        await message.reply_text(f"{message.from_user.first_name} asked:\n\n{prompt}\n\n{BOT_NAME} answered:\n\n{reply_text}")
     except Exception as e:
         logger.error(f"Error in chat command: {e}")
         await message.reply_text(f"Error: {e}")
