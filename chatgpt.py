@@ -8,12 +8,16 @@ import asyncio, time
 from random import choice
 from datetime import datetime
 import logging
-from config import API_ID, API_HASH, BOT_TOKEN, OPENAI_KEY, BOT_NAME, BOT_USERNAME, OWNER_USERNAME, SUPPORT_GROUP, START_IMG, UPDATE_CHANNEL, OWNER_ID
+from config import API_ID, API_HASH, BOT_TOKEN, OPENAI_KEY, BOT_NAME, BOT_USERNAME, OWNER_USERNAME, SUPPORT_GRP, START_IMG, UPDATE_CHNL
+
 # Logging configuration
-FORMAT = "[DEVINE] %(message)s"
+FORMAT = "[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
 logging.basicConfig(
-    level=logging.WARNING, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    level=logging.WARNING,
+    format=FORMAT,
+    datefmt='%Y-%m-%d %H:%M:%S'
 )
+logger = logging.getLogger(__name__)
 
 StartTime = time.time()
 DEVINE = Client(
@@ -37,7 +41,7 @@ Rᴇᴀᴅ Tʜᴇ ʜᴇʟᴘ sᴇᴄᴛɪᴏɴ ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏ
 
 MAIN_BUTTONS = [
     [
-        InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_ID}"),
+        InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}"),
         InlineKeyboardButton(text=" ꜱᴜᴘᴘᴏʀᴛ ", url=f"https://t.me/{SUPPORT_GRP}"),
     ],
     [
@@ -51,7 +55,7 @@ MAIN_BUTTONS = [
     ],
     [
         InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url=f"https://github.com/YOUR_REPO"),
-        InlineKeyboardButton(text=" ᴜᴘᴅᴀᴛᴇs ", url=f"https://t.me/{UPDATE_CHNL}"),
+        InlineKeyboardButton(text=" ᴜᴘᴅᴀᴛᴇs ", url=f"https://t.me/{UPDATE_CHENNAL"),
     ],
 ]
 
@@ -72,6 +76,7 @@ async def start(client, message: Message):
             reply_markup=InlineKeyboardMarkup(MAIN_BUTTONS),
         )
     except Exception as e:
+        logger.error(f"Error in start command: {e}")
         await message.reply_text(f"Error: {e}")
 
 @DEVINE.on_callback_query()
@@ -124,6 +129,7 @@ async def chat(client, message: Message):
             reply_text = response['choices'][0]['message']['content']
             await message.reply_text(f"{message.from_user.first_name} asked:\n\n{prompt}\n\n{BOT_NAME} answered:\n\n{reply_text}")
     except Exception as e:
+        logger.error(f"Error in chat command: {e}")
         await message.reply_text(f"Error: {e}")
 
 @DEVINE.on_message(filters.command(["generate", "image", "photo"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]))
@@ -141,17 +147,20 @@ async def generate_image(client, message: Message):
             image_url = response['data'][0]['url']
             await message.reply_photo(image_url, caption="Here is your generated image!")
     except Exception as e:
+        logger.error(f"Error in generate_image command: {e}")
         await message.reply_text(f"Error: {e}")
 
 if __name__ == "__main__":
-    print(f"{BOT_NAME} is starting...")
+    logger.info(f"{BOT_NAME} is starting...")
     try:
         DEVINE.start()
-    except (ApiIdInvalid, ApiIdPublishedFlood):
-        raise Exception("Your API_ID/API_HASH is not valid.")
-    except AccessTokenInvalid:
-        raise Exception("Your BOT_TOKEN is not valid.")
-    print(f"{BOT_NAME} is alive!")
+    except (ApiIdInvalid, ApiIdPublishedFlood) as e:
+        logger.critical(f"Your API_ID/API_HASH is not valid: {e}")
+        raise
+    except AccessTokenInvalid as e:
+        logger.critical(f"Your BOT_TOKEN is not valid: {e}")
+        raise
+    logger.info(f"{BOT_NAME} is alive!")
     idle()
     DEVINE.stop()
-    print(f"{BOT_NAME} has stopped.")
+    logger.info(f"{BOT_NAME} has stopped.")
