@@ -8,7 +8,7 @@ import asyncio, time
 from random import choice
 from datetime import datetime
 import logging
-from config import API_ID, API_HASH, BOT_TOKEN, OPENAI_KEY, BOT_NAME, BOT_USERNAME, OWNER_USERNAME, SUPPORT_GROUP, START_IMG, UPDATE_CHENNAL, OWNER_ID
+from config import API_ID, API_HASH, BOT_TOKEN, OPENAI_KEY, BOT_NAME, BOT_USERNAME, OWNER_USERNAME, SUPPORT_GROUP, START_IMG, UPDATE_CHANNEL, OWNER_ID
 
 # Logging configuration
 FORMAT = "[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
@@ -55,7 +55,7 @@ MAIN_BUTTONS = [
     ],
     [
         InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url=f"https://github.com/devineparadox/Devine-Chat-Gpt"),
-        InlineKeyboardButton(text=" ᴜᴘᴅᴀᴛᴇs ", url=f"https://t.me/{UPDATE_CHENNAL}"),
+        InlineKeyboardButton(text=" ᴜᴘᴅᴀᴛᴇs ", url=f"https://t.me/{UPDATE_CHANNEL}"),
     ],
 ]
 
