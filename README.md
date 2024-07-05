@@ -18,7 +18,7 @@ A Telegram bot powered by ChatGPT, enabling natural language conversations and m
 
 You can quickly deploy your own instance of the Devine Chat GPT bot on Heroku by clicking the button below:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/devineparadox/Devine-Chat-Gpt)
+<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/devineparadox/Devine-Chat-Gpt/"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
 
 1. Click the "Deploy" button above.
 2. Fill in the required environment variables (`API_ID`, `API_HASH`, `BOT_TOKEN`, `OPENAI_KEY`, `OWNER_ID`, `OWNER_USERNAME`, `UPDATE_CHANNEL`, `SUPPORT_GROUP`) on the Heroku deployment page.
