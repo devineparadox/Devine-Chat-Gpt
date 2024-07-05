@@ -12,10 +12,10 @@ logging.basicConfig(
 )
 
 # Configure OpenAI
-openai.api_key = os.getenv("sk-devinedarl-anF8ZxuJGFWdrSuVcQoHT3BlbkFJSsYuT5GqvaxSnZR5Z499")
+openai.api_key = os.getenv("OPENAI_KEY")
 
 # Configure MongoDB
-client = MongoClient(os.getenv("mongodb+srv://devineparadoxz:wAn0pVWsvgsmWh6n@cluster0.4ajkyn4.mongodb.net/?retryWrites=true&w=majority"))
+client = MongoClient(os.getenv("MONGO_URI"))
 db = client['chatbot']
 collection = db['conversations']
 
@@ -37,7 +37,7 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(bot_reply)
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token(os.getenv("7315074622:AAGDSZezWY9Ym2PFBkKDhBS72VKQd0Z8bjI")).build()
+    application = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
 
     start_handler = CommandHandler('start', start)
     chat_handler = CommandHandler('chat', chat)
