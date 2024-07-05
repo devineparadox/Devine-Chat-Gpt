@@ -49,7 +49,7 @@ async def pre_start(client, message: Message):
         await message.reply_text(f"Error: {e}")
 
 START = f"""
-<b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ {devine.mention}</b>
+<b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ {BOT_NAME}</b>
 
 <b>──────────────────</b>
 <b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs, ɪ ᴄᴀɴ
