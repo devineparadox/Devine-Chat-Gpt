@@ -1,14 +1,8 @@
-from pyrogram import Client, filters, idle
-from pyrogram.errors import ApiIdInvalid, ApiIdPublishedFlood, AccessTokenInvalid
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-from pyrogram.enums import ParseMode
-import openai
-import os, sys, re, requests
-import asyncio, time
-from random import choice
-from datetime import datetime
 import logging
-from config import API_ID, API_HASH, BOT_TOKEN, OPENAI_KEY, BOT_NAME, BOT_USERNAME, OWNER_USERNAME, SUPPORT_GROUP, START_IMG, UPDATE_CHANNEL, OWNER_ID
+from pyrogram import Client, filters, idle
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
+import openai
+import os
 
 # Logging configuration
 FORMAT = "[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
@@ -20,9 +14,17 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Get environment variables
-API_ID = os.getenv("API_ID")
+API_ID = int(os.getenv("API_ID"))
 API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+OPENAI_KEY = os.getenv("OPENAI_KEY")
+BOT_NAME = os.getenv("BOT_NAME")
+BOT_USERNAME = os.getenv("BOT_USERNAME")
+OWNER_USERNAME = os.getenv("OWNER_USERNAME")
+SUPPORT_GROUP = os.getenv("SUPPORT_GROUP")
+START_IMG = os.getenv("START_IMG")
+UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL")
+OWNER_ID = int(os.getenv("OWNER_ID"))
 
 StartTime = time.time()
 DEVINE = Client(
@@ -32,33 +34,12 @@ DEVINE = Client(
     bot_token=BOT_TOKEN
 )
 
-# New code to add sticker reply and loading animation
-async def pre_start(client, message: Message):
-    try:
-        x = await message.reply_sticker(
-            "CAACAgUAAyEFAASGBdcxAAOmZlhVrQbbVPD0vf8e64iTgGTh4i8AAsYNAAL1AAE5Vc5H-6Ms_qgfNQQ"
-        )
-        await x.delete()
-        usr = message.from_user
-        lol = await message.reply_text(
-            f"Hello, {usr.first_name}!", parse_mode=ParseMode.MARKDOWN
-        )
-        await asyncio.sleep(0.4)
-        await lol.edit_text("⚡")
-        await asyncio.sleep(0.7)
-        await lol.edit_text("Ꮮᴏᴀᴅɪɴɢ... ")
-        await asyncio.sleep(0.5)
-        await lol.delete()
-    except Exception as e:
-        logger.error(f"Error in pre_start animation: {e}")
-        await message.reply_text(f"Error: {e}")
-
 START = f"""
 <b>ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ {BOT_NAME}</b>
 
 <b>──────────────────</b>
-<b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs,\n
-ɪ ᴄᴀɴ ʀᴇsᴏʟᴠᴇ ʏᴏᴜʀ ǫᴜᴇʀɪᴇs ᴡɪᴛʜ \n
+<b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs,
+ɪ ᴄᴀɴ ʀᴇsᴏʟᴠᴇ ʏᴏᴜʀ ǫᴜᴇʀɪᴇs ᴡɪᴛʜ
 ʟɪɢʜᴛɴɪɴɢ sᴘᴇᴇᴅ ᴀɴᴅ ᴀᴄᴄᴜʀᴀᴄʏ.</b>"""
 
 MAIN_BUTTONS = [
@@ -127,12 +108,10 @@ async def ping(client, message: Message):
                 f"‣ ᴍᴀᴅᴇ ʙʏ [ᴅᴇᴠɪɴᴇ ɴᴇᴛᴡᴏʀᴋ](https://t.me/Devine_Network)\n"
                 f"‣ ᴅᴇᴠʟᴏᴘᴇʀ : [Ꭰᴇᴠɪɴᴇ Ꭰᴀʀᴋ 々](https://t.me/Devine_dark)\n"
                 f"‣ ᴘɪɴɢ : {ms} ᴍs\n"
-                f"‣ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : <code>'𝟸.𝟺.𝟸'<code> \n"
-                f"‣ ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : <code>'𝟸.𝟶.𝟷𝟶𝟼'<code>",
-        reply_markup=InlineKeyboardMarkup(MAIN_BUTTONS),
+                f"‣ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : 𝟸.𝟺.𝟸\n"
+                f"‣ ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : 𝟸.𝟶.𝟷𝟶𝟼",
     )
-
-openai.api_key = OPENAI_KEY  # This line should be at the top level, not inside any function or class
+    openai.api_key = OPENAI_KEY  # Ensure this line is at the top level, not inside any function or class
 
 @DEVINE.on_message(filters.command(["chatgpt", "ai", "ask"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]))
 async def chat(client, message: Message):
