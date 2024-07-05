@@ -31,7 +31,7 @@
       "required": true
     },
     "OWNER_ID": {
-      "description": "Owner's User ID",
+      "description": "Owner ID",
       "value": "",
       "required": true
     },
@@ -56,7 +56,7 @@
       "required": true
     },
     "OWNER_USERNAME": {
-      "description": "Owner's Telegram Username",
+      "description": "Owner Username",
       "value": "",
       "required": true
     },
