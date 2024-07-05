@@ -27,52 +27,51 @@ DEVINE = Client(
     bot_token=BOT_TOKEN
 )
 
- # New code to add sticker reply and loading animation
-    async def pre_start(client, message: Message):
-        try:
-            x = await message.reply_sticker(
-                "CAACAgUAAyEFAASGBdcxAAOmZlhVrQbbVPD0vf8e64iTgGTh4i8AAsYNAAL1AAE5Vc5H-6Ms_qgfNQQ"
-            )
-            await x.delete()
-            usr = message.from_user
-            lol = await message.reply_text(
-                f"Hello, {usr.first_name}!", parse_mode=ParseMode.MARKDOWN
-            )
-            await asyncio.sleep(0.4)
-            await lol.edit_text("⚡")
-            await asyncio.sleep(0.7)
-            await lol.edit_text("Ꮮᴏᴀᴅɪɴɢ... ")
-            await asyncio.sleep(0.5)
-            await lol.delete()
-        except Exception as e:
-            logger.error(f"Error in pre_start animation: {e}")
-            await message.reply_text(f"Error: {e}")
+# New code to add sticker reply and loading animation
+async def pre_start(client, message: Message):
+    try:
+        x = await message.reply_sticker(
+            "CAACAgUAAyEFAASGBdcxAAOmZlhVrQbbVPD0vf8e64iTgGTh4i8AAsYNAAL1AAE5Vc5H-6Ms_qgfNQQ"
+        )
+        await x.delete()
+        usr = message.from_user
+        lol = await message.reply_text(
+            f"Hello, {usr.first_name}!", parse_mode=ParseMode.MARKDOWN
+        )
+        await asyncio.sleep(0.4)
+        await lol.edit_text("⚡")
+        await asyncio.sleep(0.7)
+        await lol.edit_text("Ꮮᴏᴀᴅɪɴɢ... ")
+        await asyncio.sleep(0.5)
+        await lol.delete()
+    except Exception as e:
+        logger.error(f"Error in pre_start animation: {e}")
+        await message.reply_text(f"Error: {e}")
 
-    START = f"""
-    <b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ God</b>
+START = f"""
+<b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ God</b>
 
-    <b>──────────────────</b>
-    <b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs, ɪ ᴄᴀɴ
-    ʀᴇsᴏʟᴠᴇ ʏᴏᴜʀ ǫᴜᴇʀɪᴇs ᴡɪᴛʜ ʟɪɢʜᴛɴɪɴɢ
-    sᴘᴇᴇᴅ ᴀɴᴅ ᴀᴄᴄᴜʀᴀᴄʏ.</b>
+<b>──────────────────</b>
+<b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs, ɪ ᴄᴀɴ
+ʀᴇsᴏʟᴠᴇ ʏᴏᴜʀ ǫᴜᴇʀɪᴇs ᴡɪᴛʜ ʟɪɢʜᴛɴɪɴɢ
+sᴘᴇᴇᴅ ᴀɴᴅ ᴀᴄᴄᴜʀᴀᴄʏ.</b>
 
-    <b>ᴄʜᴇᴄᴋ ᴛʜᴇ ʜᴇʟᴘ sᴇᴄᴛɪᴏɴ ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏ.</b>
+<b>ᴄʜᴇᴄᴋ ᴛʜᴇ ʜᴇʟᴘ sᴇᴄᴛɪᴏɴ ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏ.</b>
 
-    <b>‣ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ, ᴛʏᴘᴇ /help </b>"""
+<b>‣ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ, ᴛʏᴘᴇ /help </b>"""
 
-    MAIN_BUTTONS = [
-        [
-            InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
-        ],
-        [
-            InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}"),
-            InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="https://graph.org/file/bf2b05a4ccc3f40a715c0.mp4"),
-        ],
-        [
-            InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="HELP"),
-        ],
-
-    ]
+MAIN_BUTTONS = [
+    [
+        InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
+    ],
+    [
+        InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}"),
+        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="https://graph.org/file/bf2b05a4ccc3f40a715c0.mp4"),
+    ],
+    [
+        InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="HELP"),
+    ],
+]
 
 HELP_READ = "ᴜsᴀɢᴇ /chatgpt <prompt>\n\n ᴇxᴀᴍᴘʟᴇ: `/chatgpt write a simple flask app in python.`\n\n**➻ ᴜsᴀɢᴇ** : /generate <prompt> \nᴇxᴀᴍᴘʟᴇ: `/generate a message to comfort a friend `"
 
@@ -165,17 +164,16 @@ async def generate_image(client, message: Message):
         logger.error(f"Error in generate_image command: {e}")
         await message.reply_text(f"Error: {e}")
 
-if __name__ == "__main__":
-    logger.info(f"{BOT_NAME} is starting...")
+@DEVINE.on_message(filters.text & ~filters.command(["start", "alive", "ping"]))
+async def handle_text(client, message: Message):
     try:
-        DEVINE.start()
-    except (ApiIdInvalid, ApiIdPublishedFlood) as e:
-        logger.critical(f"Your API_ID/API_HASH is not valid: {e}")
-        raise
-    except AccessTokenInvalid as e:
-        logger.critical(f"Your BOT_TOKEN is not valid: {e}")
-        raise
-    logger.info(f"{BOT_NAME} is alive!")
-    idle()
-    DEVINE.stop()
-    logger.info(f"{BOT_NAME} has stopped.")
+        prompt = message.text
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.2,
+        )
+        reply_text = response['choices'][0]['message']['content']
+        await message.reply_text(f"{message.from_user.first_name} asked:\n\n{prompt}\n\n{BOT_NAME} answered:\n\n{reply_text}")
+    except Exception as e:
+        logger.error(f"Error in handle_text: {e}")
