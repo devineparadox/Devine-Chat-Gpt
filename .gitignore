@@ -1,2 +1,3 @@
 .env
 git init
+config.py
