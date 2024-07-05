@@ -20,13 +20,6 @@ A Telegram bot powered by ChatGPT, enabling natural language conversations and m
 - Telegram API credentials (API ID, API Hash, Bot Token)
 - OpenAI API key (if using GPT-3)
 
-### Installation
+### Deployment
 
 <p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/devineparadox/Devine-Chat-Gpt/"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
-
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/devineparadox/Devine-Chat-Gpt.git
-   cd Devine-Chat-Gpt
