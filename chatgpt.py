@@ -49,16 +49,12 @@ async def pre_start(client, message: Message):
         await message.reply_text(f"Error: {e}")
 
 START = f"""
-<b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ {BOT_NAME}</b>
+<b>ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ {BOT_NAME}</b>
 
 <b>──────────────────</b>
 <b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs, ɪ ᴄᴀɴ
 ʀᴇsᴏʟᴠᴇ ʏᴏᴜʀ ǫᴜᴇʀɪᴇs ᴡɪᴛʜ ʟɪɢʜᴛɴɪɴɢ
-sᴘᴇᴇᴅ ᴀɴᴅ ᴀᴄᴄᴜʀᴀᴄʏ.</b>
-
-<b>ᴄʜᴇᴄᴋ ᴛʜᴇ ʜᴇʟᴘ sᴇᴄᴛɪᴏɴ ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏ.</b>
-
-<b>‣ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ, ᴛʏᴘᴇ /help </b>"""
+sᴘᴇᴇᴅ ᴀɴᴅ ᴀᴄᴄᴜʀᴀᴄʏ.</b>"""
 
 MAIN_BUTTONS = [
     [
