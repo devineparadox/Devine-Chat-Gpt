@@ -49,7 +49,7 @@ async def pre_start(client, message: Message):
         await message.reply_text(f"Error: {e}")
 
 START = f"""
-<b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ God</b>
+<b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ {devine.mention}</b>
 
 <b>──────────────────</b>
 <b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs, ɪ ᴄᴀɴ
@@ -122,7 +122,12 @@ async def ping(client, message: Message):
     ms = (end_time - start_time).microseconds / 1000
     await message.reply_photo(
         photo=START_IMG,
-        caption=f"Hey! {BOT_NAME} is alive.\nPing: {ms} ms",
+        caption=f"✨ {BOT_NAME} ɪs ᴀʟɪᴠᴇ.\n\n"
+                f"‣ ᴍᴀᴅᴇ ʙʏ [ᴅᴇᴠɪɴᴇ ɴᴇᴛᴡᴏʀᴋ](https://t.me/Devine_Network)\n"
+                f"‣ ᴅᴇᴠʟᴏᴘᴇʀ : [Ꭰᴇᴠɪɴᴇ Ꭰᴀʀᴋ 々](https://t.me/Devine_dark)\n"
+                f"‣ ᴘɪɴɢ : {ms} ᴍs\n"
+                f"‣ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : <code>'𝟸.𝟺.𝟸'<code> \n"
+                f"‣ ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : <code>'𝟸.𝟶.𝟷𝟶𝟼'<code>",
         reply_markup=InlineKeyboardMarkup(MAIN_BUTTONS),
     )
 
@@ -153,11 +158,7 @@ async def generate_image(client, message: Message):
             await message.reply_text("Example:\n\n`/generate a white siamese cat`")
         else:
             prompt = message.text.split(' ', 1)[1]
-            response = openai.Image.create(
-                prompt=prompt,
-                n=1,
-                size="1024x1024",
-            )
+            response = openai.Image.create(                prompt=prompt,                n=1,                size="1024x1024",            )
             image_url = response['data'][0]['url']
             await message.reply_photo(image_url, caption="Here is your generated image!")
     except Exception as e:
