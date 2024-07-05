@@ -8,7 +8,7 @@ BOT_NAME = "Ꭰᴇᴠɪɴᴇ Ꮯʜᴀᴛ Ꮐᴘᴛ"
 START_IMG = "https://graph.org/file/3b4ddf531eeb2031ce727.jpg"
 BANNED_USERS = None
 UPDATE_CHANNEL = "Devine_Network"
-OWNER_USERNAME = "fake_devine"
+OWNER_USERNAME = "devine_dark"
 SUPPORT_GROUP = "Devine_Community"
 
  
