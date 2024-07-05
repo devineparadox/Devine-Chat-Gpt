@@ -12,14 +12,40 @@ A Telegram bot powered by ChatGPT, enabling natural language conversations and m
 - **Customizable Responses**: Tailor responses based on user interactions and context.
 - **Error Handling**: Logs errors and ensures smooth operation.
 
-## Setup
+Click the button below to deploy your own instance of the bot on Heroku.
 
-### Prerequisites
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/devineparadox/Devine-Chat-Gpt)
 
-- Python 3.7 or higher
-- Telegram API credentials (API ID, API Hash, Bot Token)
-- OpenAI API key (if using GPT-3)
+## Environment Variables
 
-### Deployment
+- `API_ID`: Your Telegram API ID
+- `API_HASH`: Your Telegram API Hash
+- `BOT_TOKEN`: Your Telegram Bot Token
+- `OPENAI_KEY`: Your OpenAI API Key
+- `OWNER_ID`: The Telegram ID of the bot owner
+- `OWNER_USERNAME`: The Telegram username of the bot owner
+- `UPDATE_CHANNEL`: The Telegram update channel
+- `SUPPORT_GROUP`: The Telegram support group
 
-<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/devineparadox/Devine-Chat-Gpt/"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
+## How to Run Locally
+
+1. Clone the repository
+2. Install dependencies
+3. Set up environment variables
+4. Run the bot
+
+```bash
+git clone https://github.com/devineparadox/Devine-Chat-Gpt.git
+cd Devine-Chat-Gpt
+pip install -r requirements.txt
+export API_ID=your_api_id
+export API_HASH=your_api_hash
+export BOT_TOKEN=your_bot_token
+export OPENAI_KEY=your_openai_key
+export OWNER_ID=your_owner_id
+export OWNER_USERNAME=your_owner_username
+export
+UPDATE_CHANNEL=your_update_channel
+export SUPPORT_GROUP=your_support_group
+python bot.py
+
