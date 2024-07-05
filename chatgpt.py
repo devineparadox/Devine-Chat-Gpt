@@ -49,7 +49,7 @@ async def pre_start(client, message: Message):
         await message.reply_text(f"Error: {e}")
 
 START = f"""
-<b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ {BOT_NAME}</b>
+<b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ {devine.mention}</b>
 
 <b>──────────────────</b>
 <b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs, ɪ ᴄᴀɴ
@@ -66,7 +66,7 @@ MAIN_BUTTONS = [
     ],
     [
         InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}"),
-        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="https://github.com/devineparadox/Devine-Chat-Gpt"),
+        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="https://graph.org/file/bf2b05a4ccc3f40a715c0.mp4"),
     ],
     [
         InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="HELP"),
@@ -117,7 +117,7 @@ async def help(client, message: Message):
 @DEVINE.on_message(filters.command(["ping", "alive"], prefixes=["+", "/", "-", "?", "$", "&", "."]))
 async def ping(client, message: Message):
     start_time = datetime.now()
-    await message.reply_text("Pinging...")
+    await message.reply_text("Ꮮᴏᴀᴅɪɴɢ...")
     end_time = datetime.now()
     ms = (end_time - start_time).microseconds / 1000
     await message.reply_photo(
@@ -128,8 +128,7 @@ async def ping(client, message: Message):
                 f"‣ ᴘɪɴɢ : {ms} ᴍs\n"
                 f"‣ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : <code>'𝟸.𝟺.𝟸'<code> \n"
                 f"‣ ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : <code>'𝟸.𝟶.𝟷𝟶𝟼'<code>",
-        reply_markup=InlineKeyboardMarkup(MAIN_BUTTONS),
-    )
+        
 
 openai.api_key = OPENAI_KEY
 
@@ -146,35 +145,13 @@ async def chat(client, message: Message):
                 temperature=0.2,
             )
             reply_text = response['choices'][0]['message']['content']
-            await message.reply_text(f"{message.from_user.first_name} asked:\n\n{prompt}\n\n{BOT_NAME} answered:\n\n{reply_text}")
+            await message.reply_text(reply_text)
     except Exception as e:
         logger.error(f"Error in chat command: {e}")
         await message.reply_text(f"Error: {e}")
 
-@DEVINE.on_message(filters.command(["generate", "image", "photo"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]))
-async def generate_image(client, message: Message):
-    try:
-        if len(message.command) < 2:
-            await message.reply_text("Example:\n\n`/generate a white siamese cat`")
-        else:
-            prompt = message.text.split(' ', 1)[1]
-            response = openai.Image.create(                prompt=prompt,                n=1,                size="1024x1024",            )
-            image_url = response['data'][0]['url']
-            await message.reply_photo(image_url, caption="Here is your generated image!")
-    except Exception as e:
-        logger.error(f"Error in generate_image command: {e}")
-        await message.reply_text(f"Error: {e}")
-
-@DEVINE.on_message(filters.text & ~filters.command(["start", "alive", "ping"]))
-async def handle_text(client, message: Message):
-    try:
-        prompt = message.text
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.2,
-        )
-        reply_text = response['choices'][0]['message']['content']
-        await message.reply_text(f"{message.from_user.first_name} asked:\n\n{prompt}\n\n{BOT_NAME} answered:\n\n{reply_text}")
-    except Exception as e:
-        logger.error(f"Error in handle_text: {e}")
+if __name__ == "__main__":
+    logger.info("Bot is starting...")
+    DEVINE.run()
+    idle()
+    logger.info("Bot has stopped.")
