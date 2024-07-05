@@ -27,39 +27,54 @@ DEVINE = Client(
     bot_token=BOT_TOKEN
 )
 
-START = f"""
-๏ ʜᴇʏ, ɪ ᴀᴍ {BOT_NAME}
-➻ ᴀɴ ᴏᴘᴇɴ-ᴀɪ-ʙᴀsᴇᴅ ᴄʜᴀᴛɢᴘᴛ.
-──────────────────
-ɪ ᴀᴍ ᴀᴅᴠᴀɴᴄᴇ ʙᴏᴛ ᴀɴᴅ ᴄᴀɴ 
-ᴀɴsᴡᴇʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀɪᴇs ᴇᴀsʟɪʏ
+ # New code to add sticker reply and loading animation
+    async def pre_start(client, message: Message):
+        try:
+            x = await message.reply_sticker(
+                "CAACAgUAAyEFAASGBdcxAAOmZlhVrQbbVPD0vf8e64iTgGTh4i8AAsYNAAL1AAE5Vc5H-6Ms_qgfNQQ"
+            )
+            await x.delete()
+            usr = message.from_user
+            lol = await message.reply_text(
+                f"Hello, {usr.first_name}!", parse_mode=ParseMode.MARKDOWN
+            )
+            await asyncio.sleep(0.4)
+            await lol.edit_text("⚡")
+            await asyncio.sleep(0.7)
+            await lol.edit_text("Ꮮᴏᴀᴅɪɴɢ... ")
+            await asyncio.sleep(0.5)
+            await lol.delete()
+        except Exception as e:
+            logger.error(f"Error in pre_start animation: {e}")
+            await message.reply_text(f"Error: {e}")
 
-Rᴇᴀᴅ Tʜᴇ ʜᴇʟᴘ sᴇᴄᴛɪᴏɴ ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏ
+    START = f"""
+    <b>‣ ɢʀᴇᴇᴛɪɴɢs, ɪ ᴀᴍ God</b>
 
-๏ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ ᴜsᴇ /help
-"""
+    <b>──────────────────</b>
+    <b>ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀʟɢᴏʀɪᴛʜᴍs, ɪ ᴄᴀɴ
+    ʀᴇsᴏʟᴠᴇ ʏᴏᴜʀ ǫᴜᴇʀɪᴇs ᴡɪᴛʜ ʟɪɢʜᴛɴɪɴɢ
+    sᴘᴇᴇᴅ ᴀɴᴅ ᴀᴄᴄᴜʀᴀᴄʏ.</b>
 
-MAIN_BUTTONS = [
-    [
-        InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_ID}"),
-        InlineKeyboardButton(text=" ꜱᴜᴘᴘᴏʀᴛ ", url=f"https://t.me/{SUPPORT_GROUP}"),
-    ],
-    [
-        InlineKeyboardButton(
-            text="ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ",
-            url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-        ),
-    ],
-    [
-        InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="HELP"),
-    ],
-    [
-        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url=f"https://github.com/devineparadox/Devine-Chat-Gpt"),
-        InlineKeyboardButton(text=" ᴜᴘᴅᴀᴛᴇs ", url=f"https://t.me/{UPDATE_CHANNEL}"),
-    ],
-]
+    <b>ᴄʜᴇᴄᴋ ᴛʜᴇ ʜᴇʟᴘ sᴇᴄᴛɪᴏɴ ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏ.</b>
 
-HELP_READ = "**ᴜsᴀɢᴇ** /chatgpt <prompt>\n\n ᴇxᴀᴍᴘʟᴇ: `/chatgpt write a simple flask app in python.`\n\n**➻ ᴜsᴀɢᴇ** : /generate <prompt> \nᴇxᴀᴍᴘʟᴇ: `/generate a cute girl photo`  \n\n➻ ᴜsᴀɢᴇ /ping ᴛᴏ ᴄʜᴇᴄᴋ ᴛʜᴇ ᴘɪɴɢ ᴏғ ᴛʜᴇ ʙᴏᴛ.**\n\n©️ @YourUsername**"
+    <b>‣ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ, ᴛʏᴘᴇ /help </b>"""
+
+    MAIN_BUTTONS = [
+        [
+            InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
+        ],
+        [
+            InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}"),
+            InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="https://graph.org/file/bf2b05a4ccc3f40a715c0.mp4"),
+        ],
+        [
+            InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="HELP"),
+        ],
+
+    ]
+
+HELP_READ = "ᴜsᴀɢᴇ /chatgpt <prompt>\n\n ᴇxᴀᴍᴘʟᴇ: `/chatgpt write a simple flask app in python.`\n\n**➻ ᴜsᴀɢᴇ** : /generate <prompt> \nᴇxᴀᴍᴘʟᴇ: `/generate a message to comfort a friend `"
 
 HELP_BACK = [
     [
