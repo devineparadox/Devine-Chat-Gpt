@@ -12,7 +12,7 @@ logging.basicConfig(
 )
 
 # Configure OpenAI
-openai.api_key = os.getenv("sk-proj-1e9GtG7JQ8tOOdwBAGroT3BlbkFJAc9dNDl1PWVctAajuy6G")
+openai.api_key = os.getenv("sk-devinedarl-anF8ZxuJGFWdrSuVcQoHT3BlbkFJSsYuT5GqvaxSnZR5Z499")
 
 # Configure MongoDB
 client = MongoClient(os.getenv("mongodb+srv://devineparadoxz:wAn0pVWsvgsmWh6n@cluster0.4ajkyn4.mongodb.net/?retryWrites=true&w=majority"))
