@@ -3,6 +3,8 @@ from pyrogram import Client, filters, idle
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 import openai
 import os
+import time
+from datetime import datetime
 
 # Logging configuration
 FORMAT = "[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
@@ -26,7 +28,6 @@ START_IMG = os.getenv("START_IMG")
 UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL")
 OWNER_ID = int(os.getenv("OWNER_ID"))
 
-StartTime = time.time()
 DEVINE = Client(
     "chat-gpt",
     api_id=API_ID,
@@ -132,7 +133,11 @@ async def chat(client, message: Message):
         await message.reply_text(f"Error: {e}")
 
 if __name__ == "__main__":
-    logger.info("Bot is starting...")
-    DEVINE.run()
-    idle()
-    logger.info("Bot has stopped.")
+    try:
+        logger.info("Bot is starting...")
+        DEVINE.run()
+        idle()
+    except Exception as e:
+        logger.error(f"Bot encountered an error: {e}")
+    finally:
+        logger.info("Bot has stopped.")
