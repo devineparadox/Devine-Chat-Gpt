@@ -117,7 +117,7 @@ async def help(client, message: Message):
 @DEVINE.on_message(filters.command(["ping", "alive"], prefixes=["+", "/", "-", "?", "$", "&", "."]))
 async def ping(client, message: Message):
     start_time = datetime.now()
-    await message.reply_text("Ꮮᴏᴀᴅɪɴɢ...")
+    await message.reply_text("Pinging...")
     end_time = datetime.now()
     ms = (end_time - start_time).microseconds / 1000
     await message.reply_photo(
@@ -128,9 +128,10 @@ async def ping(client, message: Message):
                 f"‣ ᴘɪɴɢ : {ms} ᴍs\n"
                 f"‣ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : <code>'𝟸.𝟺.𝟸'<code> \n"
                 f"‣ ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : <code>'𝟸.𝟶.𝟷𝟶𝟼'<code>",
-        
+        reply_markup=InlineKeyboardMarkup(MAIN_BUTTONS),
+    )
 
-openai.api_key = OPENAI_KEY
+openai.api_key = OPENAI_KEY  # This line should be at the top level, not inside any function or class
 
 @DEVINE.on_message(filters.command(["chatgpt", "ai", "ask"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]))
 async def chat(client, message: Message):
