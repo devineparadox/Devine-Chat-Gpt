@@ -1,62 +1,74 @@
-
 {
-  "name": "DEVINE CHAT BOT",
-  "description": "TELEGRAM CHAT BOT",
-  "logo": "https://telegra.ph/file/5632b2e02f0a72431ed97.jpg",
-  "keywords": [
-    "telegram", "chatgpt",
-    "python",
-    "pyrogram",
-    "DAXXTEAM"   
-  ],
-  "stack": "heroku-20",
-  "addons": [
-    {
-      "plan": "heroku-postgresql",
-      "options": {
-        "version": "12"
-      }
-    }
-  ],
+  "name": "Devine Chat GPT",
+  "description": "A ChatGPT bot for Telegram",
+  "repository": "https://github.com/devineparadox/Devine-Chat-Gpt",
+  "keywords": ["telegram", "chatgpt", "bot"],
+  "logo": "https://telegra.ph//file/44f9c0b5f1afbf934c078.jpg",
   "env": {
-    "BOT_TOKEN": { "description": "bot token ",
-      "required": true
-    },
-    "OWNER_USERNAME": {
-      "description": "username",
-      "required": true
-    },
-    "OPENAI_KEY": {
-      "description": "openai key ",
-      "required": true
-    },
-    "BOT_USERNAME": {
-      "description": "bot username",
-      "required": true
-    },
-    "BOT_NAME": {
-      "description": "bot name ",
-      "required": true
-    },
-    "SUPPORT_GRP": {
-      "description": "group name",
-      "required": true
-    },
-    "START_IMG": {
-      "description": "start_img.",
-      "required": true
-    },
-    "UPDATE_CHNL": {
-      "description": "support channel",
-      "required": true
-    },
-    "API_ID": { "description": "api id ",
+    "API_ID": {
+      "description": "Get this value from my.telegram.org/apps",
+      "value": "",
       "required": true
     },
     "API_HASH": {
-      "description": "api hash",
+      "description": "Get this value from my.telegram.org/apps",
+      "value": "",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Get your token from @BotFather on Telegram.",
+      "value": "",
+      "required": true
+    },
+    "OPENAI_KEY": {
+      "description": "Get your open ai key from https://openai.com",
+      "value": "",
+      "required": true
+    },
+    "BOT_USERNAME": {
+      "description": "Bot Username",
+      "value": "",
+      "required": true
+    },
+    "OWNER_ID": {
+      "description": "Owner's User ID",
+      "value": "",
+      "required": true
+    },
+    "BOT_NAME": {
+      "description": "Bot Name",
+      "value": "",
+      "required": true
+    },
+    "START_IMG": {
+      "description": "Start Image URL",
+      "value": "",
+      "required": true
+    },
+    "BANNED_USERS": {
+      "description": "Banned Users",
+      "value": "None",
+      "required": true
+    },
+    "UPDATE_CHANNEL": {
+      "description": "Update Channel",
+      "value": "",
+      "required": true
+    },
+    "OWNER_USERNAME": {
+      "description": "Owner's Telegram Username",
+      "value": "",
+      "required": true
+    },
+    "SUPPORT_GROUP": {
+      "description": "Support Group",
+      "value": "",
       "required": true
     }
   },
-  "repository": "https://github.com/devineparadox/chat-dev"
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
 }
