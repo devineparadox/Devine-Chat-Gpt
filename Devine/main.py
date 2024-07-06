@@ -7,7 +7,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='[%(asctime)s - %(levelname)s] - %(name)s - %(message)s',
     handlers=[
-        logging.StreamHandler()
+        logging.StreamHandler()  # This will send logs to the console, which Heroku captures
     ]
 )
 logger = logging.getLogger(__name__)
@@ -28,13 +28,13 @@ DEVINE = Client(
 # Log bot start
 @DEVINE.on_startup
 async def on_startup(client):
-    logger.info("Bot is starting...")
+    logger.info("Bot is starting on Heroku...")  # Updated log message for clarity
     # Additional startup tasks
 
 # Log bot stop
 @DEVINE.on_shutdown
 async def on_shutdown(client):
-    logger.info("Bot is stopping...")
+    logger.info("Bot is stopping on Heroku...")  # Updated log message for clarity
 
 # Example command handler
 @DEVINE.on_message(filters.command("start") & filters.private)
