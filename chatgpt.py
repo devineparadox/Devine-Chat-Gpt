@@ -101,14 +101,14 @@ async def help(client, message: Message):
 async def ping(client, message: Message):
     # Start loading animation
     loading_msg = await message.reply_text("🔥")
-    time.sleep(0.4)
+    await asyncio.sleep(0.4)
     await loading_msg.edit_text("⚡")
-    time.sleep(0.5)
+    await asyncio.sleep(0.5)
     
     # Calculate ping response time
     start_time = datetime.now()
     await message.reply_text("Ꮮᴏᴀᴅɪɴɢ...")
-    time.sleep(0.7)
+    await asyncio.sleep(0.7)
     end_time = datetime.now()
     ms = (end_time - start_time).microseconds / 1000
     
