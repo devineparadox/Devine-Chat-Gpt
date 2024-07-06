@@ -7,7 +7,7 @@ from datetime import datetime
 # Logging configuration
 FORMAT = "[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
 logging.basicConfig(
-    level=logging.WARNING,
+    level=logging.INFO,  # Adjust log level as needed
     format=FORMAT,
     datefmt='%Y-%m-%d %H:%M:%S'
 )
@@ -30,19 +30,22 @@ DEVINE = Client(
 
 @DEVINE.on_message(filters.command(["ping", "alive"], prefixes=["+", "/", "-", "?", "$", "&", "."]))
 async def ping(client, message: Message):
-    start_time = datetime.now()
-    await message.reply_text("Pinging...")
-    end_time = datetime.now()
-    ms = (end_time - start_time).microseconds / 1000
-    await message.reply_photo(
-        photo=START_IMG,
-        caption=f"✨ {BOT_NAME} ɪs ᴀʟɪᴠᴇ.\n\n"
+    try:
+        start_time = datetime.now()
+        await message.reply_text("Pinging...")
+        end_time = datetime.now()
+        ms = (end_time - start_time).microseconds / 1000
+        await message.reply_photo(
+            photo=START_IMG,
+            caption=f"✨ {BOT_NAME} ɪs ᴀʟɪᴠᴇ.\n\n"
                 f"‣ ᴍᴀᴅᴇ ʙʏ [ᴅᴇᴠɪɴᴇ ɴᴇᴛᴡᴏʀᴋ](https://t.me/Devine_Network)\n"
                 f"‣ ᴅᴇᴠʟᴏᴘᴇʀ : [Ꭰᴇᴠɪɴᴇ Ꭰᴀʀᴋ 々](https://t.me/Devine_dark)\n"
                 f"‣ ᴘɪɴɢ : {ms} ᴍs\n"
                 f"‣ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : 𝟹.𝟿\n"
                 f"‣ ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : 𝟷.𝟸.𝟶",
-    )
+        )
+    except Exception as e:
+        logger.error(f"Error processing /ping or /alive command: {e}")
 
 if __name__ == "__main__":
     try:
@@ -51,5 +54,4 @@ if __name__ == "__main__":
     except Exception as e:
         logger.error(f"Alive check bot encountered an error: {e}")
     finally:
-        logger.info("Alive check bot has stopp
-ed.")
+        logger.info("Alive check bot has stopped.")
