@@ -104,13 +104,11 @@ async def ping(client, message: Message):
     time.sleep(0.4)
     await loading_msg.edit_text("⚡")
     time.sleep(0.5)
-    await loading_msg.edit_text("Ꮮᴏᴀᴅɪɴɢ...")
-    time.sleep(0.5)
-    await loading_msg.delete()  # Remove the loading message
     
     # Calculate ping response time
     start_time = datetime.now()
-    await message.reply_text("...")
+    await message.reply_text("Ꮮᴏᴀᴅɪɴɢ...")
+    time.sleep(0.7)
     end_time = datetime.now()
     ms = (end_time - start_time).microseconds / 1000
     
