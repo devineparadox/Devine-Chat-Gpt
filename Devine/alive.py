@@ -22,7 +22,7 @@ BOT_USERNAME = os.getenv("BOT_USERNAME")
 START_IMG = os.getenv("START_IMG")
 
 DEVINE = Client(
-    "chat-gpt-alive",
+    "chat-gpt",
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN
@@ -32,7 +32,7 @@ DEVINE = Client(
 async def ping(client, message: Message):
     try:
         start_time = datetime.now()
-        await message.reply_text("Pinging...")
+        await message.reply_text("ᴡᴀɪᴛ...")
         end_time = datetime.now()
         ms = (end_time - start_time).microseconds / 1000
         await message.reply_photo(
