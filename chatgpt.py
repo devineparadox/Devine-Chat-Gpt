@@ -3,6 +3,8 @@ from pyrogram import Client, filters, idle
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 import openai
 import os
+import time
+from datetime import datetime
 
 # Logging configuration
 FORMAT = "[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
@@ -95,7 +97,22 @@ async def help(client, message: Message):
         reply_markup=InlineKeyboardMarkup(HELP_BACK),
     )
 
-openai.api_key = OPENAI_KEY
+@DEVINE.on_message(filters.command(["ping", "alive"], prefixes=["+", "/", "-", "?", "$", "&", "."]))
+async def ping(client, message: Message):
+    start_time = datetime.now()
+    await message.reply_text("Pinging...")
+    end_time = datetime.now()
+    ms = (end_time - start_time).microseconds / 1000
+    await message.reply_photo(
+        photo=START_IMG,
+        caption=f"✨ {BOT_NAME} ɪs ᴀʟɪᴠᴇ.\n\n"
+                f"‣ ᴍᴀᴅᴇ ʙʏ [ᴅᴇᴠɪɴᴇ ɴᴇᴛᴡᴏʀᴋ](https://t.me/Devine_Network)\n"
+                f"‣ ᴅᴇᴠʟᴏᴘᴇʀ : [Ꭰᴇᴠɪɴᴇ Ꭰᴀʀᴋ 々](https://t.me/Devine_dark)\n"
+                f"‣ ᴘɪɴɢ : {ms} ᴍs\n"
+                f"‣ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : 𝟸.𝟺.𝟸\n"
+                f"‣ ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : 𝟸.𝟶.𝟷𝟶𝟼",
+    )
+    openai.api_key = OPENAI_KEY  # Ensure this line is at the top level, not inside any function or class
 
 @DEVINE.on_message(filters.command(["chatgpt", "ai", "ask"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]))
 async def chat(client, message: Message):
