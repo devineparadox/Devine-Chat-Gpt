@@ -3,7 +3,7 @@
   "description": "A ChatGPT bot for Telegram",
   "repository": "https://github.com/devineparadox/Devine-Chat-Gpt",
   "keywords": ["telegram", "chatgpt", "bot"],
-  "logo": "https://telegra.ph//file/44f9c0b5f1afbf934c078.jpg",
+  "logo": "https://telegra.ph//file/811e905e122befab95032.jpg",
   "env": {
     "API_ID": {
       "description": "Get this value from my.telegram.org/apps",
