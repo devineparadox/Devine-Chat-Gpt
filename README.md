@@ -1,6 +1,6 @@
 # Devine Chat GPT
 
-![Logo](https://telegra.ph//file/44f9c0b5f1afbf934c078.jpg)
+![Logo](https://telegra.ph//file/811e905e122befab95032.jpg)
 
 A Telegram bot powered by ChatGPT, enabling natural language conversations and more.
 
