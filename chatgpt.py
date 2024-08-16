@@ -49,7 +49,7 @@ MAIN_BUTTONS = [
     ],
     [
         InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}"),
-        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="https://github.com/devineparadox/Devine-Chat-Gpt"),
+        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x64\x65\x76\x69\x6e\x65\x70\x61\x72\x61\x64\x6f\x78\x2f\x44\x65\x76\x69\x6e\x65\x2d\x43\x68\x61\x74\x2d\x47\x70\x74"),
     ],
     [
         InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="HELP"),
