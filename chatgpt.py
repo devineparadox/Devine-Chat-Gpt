@@ -6,8 +6,8 @@ import os
 import time
 from datetime import datetime
 
-# Logging configuration
 FORMAT = "[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
+
 logging.basicConfig(
     level=logging.WARNING,
     format=FORMAT,
@@ -15,7 +15,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Get environment variables
 API_ID = int(os.getenv("API_ID"))
 API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -28,7 +27,7 @@ START_IMG = os.getenv("START_IMG")
 UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL")
 OWNER_ID = int(os.getenv("OWNER_ID"))
 
-DEVINE = Client(
+dev = Client(
     "chat-gpt",
     api_id=API_ID,
     api_hash=API_HASH,
@@ -45,13 +44,6 @@ START = f"""
 
 MAIN_BUTTONS = [
     [
-        InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
-    ],
-    [
-        InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}"),
-        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x64\x65\x76\x69\x6e\x65\x70\x61\x72\x61\x64\x6f\x78\x2f\x44\x65\x76\x69\x6e\x65\x2d\x43\x68\x61\x74\x2d\x47\x70\x74"),
-    ],
-    [
         InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="HELP"),
     ],
 ]
@@ -64,7 +56,7 @@ HELP_BACK = [
     ],
 ]
 
-@DEVINE.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
+@dev.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def start(client, message: Message):
     try:
         await message.reply_photo(
@@ -76,7 +68,7 @@ async def start(client, message: Message):
         logger.error(f"Error in start command: {e}")
         await message.reply_text(f"Error: {e}")
 
-@DEVINE.on_callback_query()
+@dev.on_callback_query()
 async def cb_handler(client, query):
     if query.data == "HELP":
         await query.message.edit_text(
@@ -89,7 +81,7 @@ async def cb_handler(client, query):
             reply_markup=InlineKeyboardMarkup(MAIN_BUTTONS),
         )
 
-@DEVINE.on_message(filters.command(["help", f"help@{BOT_USERNAME}"], prefixes=["", "+", ".", "/", "-", "?", "$"]))
+@dev.on_message(filters.command(["help", f"help@{BOT_USERNAME}"], prefixes=["", "+", ".", "/", "-", "?", "$"]))
 async def help(client, message: Message):
     await message.reply_photo(
         START_IMG,
@@ -97,22 +89,19 @@ async def help(client, message: Message):
         reply_markup=InlineKeyboardMarkup(HELP_BACK),
     )
 
-@DEVINE.on_message(filters.command(["ping", "alive"], prefixes=["+", "/", "-", "?", "$", "&", "."]))
+@dev.on_message(filters.command(["ping", "alive"], prefixes=["+", "/", "-", "?", "$", "&", "."]))
 async def ping(client, message: Message):
-    # Start loading animation
     loading_msg = await message.reply_text("🔥")
     await asyncio.sleep(0.4)
     await loading_msg.edit_text("⚡")
     await asyncio.sleep(0.5)
     
-    # Calculate ping response time
     start_time = datetime.now()
     await message.reply_text("Ꮮᴏᴀᴅɪɴɢ...")
     await asyncio.sleep(0.7)
     end_time = datetime.now()
     ms = (end_time - start_time).microseconds / 1000
     
-    # Send ping response
     await message.reply_photo(
         photo=START_IMG,
         caption=f"✨ {BOT_NAME} ɪs ᴀʟɪᴠᴇ.\n\n"
@@ -122,9 +111,9 @@ async def ping(client, message: Message):
                 f"‣ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : 𝟸.𝟺.𝟸\n"
                 f"‣ ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : 𝟸.𝟶.𝟷𝟶𝟼",
     )
-    openai.api_key = OPENAI_KEY  # Ensure this line is at the top level, not inside any function or class
+    openai.api_key = OPENAI_KEY  
 
-@DEVINE.on_message(filters.command(["chatgpt", "ai", "ask"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]))
+@dev.on_message(filters.command(["chatgpt", "ai", "ask"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]))
 async def chat(client, message: Message):
     try:
         if len(message.command) < 2:
@@ -145,7 +134,7 @@ async def chat(client, message: Message):
 if __name__ == "__main__":
     try:
         logger.info("Bot is starting...")
-        DEVINE.run()
+        dev.run()
         idle()
     except Exception as e:
         logger.error(f"Bot encountered an error: {e}")
